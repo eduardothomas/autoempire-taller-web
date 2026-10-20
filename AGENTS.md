@@ -3,7 +3,8 @@
 Este proyecto aplica el Estándar de Desarrollo de Software de Eduardo **v1.2** (`eduardothomas/software-development-standard`). Plataforma: **GitHub**.
 
 ## Arquitectura
-Sitio estático de una página, sin frameworks ni backend. HTML + CSS + JavaScript en módulos ES dentro de `public/`. `scripts/build.mjs` copia a `dist/` y valida; Cloudflare Workers sirve `dist/` como archivos estáticos (`wrangler.jsonc`).
+Sitio estático de una página, sin frameworks ni backend. HTML + CSS + JavaScript en módulos ES dentro de `public/`. `scripts/build.mjs` copia a `dist/` y valida; GitHub Pages publica `dist/` en la subruta `/autoempire-taller-web/` (workflow `pages.yml`). `wrangler.jsonc` queda como alternativa en Cloudflare Workers.
+- Rutas siempre relativas (nada que empiece con `/`), para que funcione en la subruta de Pages y en la raíz de un dominio propio.
 
 - `public/js/logica.js`: funciones puras (sin DOM). Toda regla nueva va aquí y con prueba en `tests/`.
 - `public/js/app.js`: solo conecta la lógica con el DOM.
