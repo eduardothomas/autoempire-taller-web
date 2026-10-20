@@ -1,0 +1,26 @@
+# Dependencias
+node_modules/
+.venv/
+bin/
+obj/
+
+# Builds
+dist/
+build/
+.wrangler/
+coverage/
+playwright-report/
+test-results/
+
+# Secretos y entorno local
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Sistema y editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

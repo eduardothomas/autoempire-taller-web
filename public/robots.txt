@@ -1,0 +1,3 @@
+# Propuesta en revisión: no indexar hasta que el taller apruebe el contenido.
+User-agent: *
+Disallow: /

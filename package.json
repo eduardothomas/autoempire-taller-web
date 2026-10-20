@@ -1,0 +1,19 @@
+{
+  "name": "autoempire-taller-web",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Sitio web de Auto Empire Taller (propuesta): servicios, precios de referencia y reservas por WhatsApp.",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/servidor.mjs public",
+    "preview": "node scripts/servidor.mjs dist",
+    "test": "vitest run",
+    "build": "node scripts/build.mjs"
+  },
+  "devDependencies": {
+    "vitest": "^5.0.5"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
