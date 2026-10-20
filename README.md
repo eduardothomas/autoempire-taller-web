@@ -19,12 +19,12 @@ Se abre en: http://localhost:5173
 
 | Qué | Enlace | Se actualiza |
 |---|---|---|
-| Producción | Aún no publicado (pendiente conectar a Cloudflare Workers) | Al fusionar a `main` (con aprobación) |
+| Producción (GitHub Pages) | https://eduardothomas.github.io/autoempire-taller-web/ (se activa con el primer despliegue) | Al fusionar a `main` (con aprobación) |
 | QA | No aplica | — |
-| Previews de PR | Pendiente: `<rama>-autoempire-taller-web.<cuenta>.workers.dev` cuando se conecte Cloudflare | En cada rama o PR |
+| Previews de PR | No aplica (GitHub Pages no tiene previews por rama) | — |
 | Actions | https://github.com/eduardothomas/autoempire-taller-web/actions | En cada push a `main` y en cada PR |
 | Repositorio | https://github.com/eduardothomas/autoempire-taller-web | — |
-| Panel de hosting | Pendiente: Cloudflare → Workers & Pages | — |
+| Panel de hosting | https://github.com/eduardothomas/autoempire-taller-web/settings/pages | — |
 
 ## Contenido del proyecto
 
@@ -42,7 +42,10 @@ scripts/
   build.mjs        Copia public/ a dist/ y falla si hay archivos o anclas rotas
   servidor.mjs     Servidor local sin dependencias
 tests/             Pruebas de la lógica (Vitest)
-wrangler.jsonc     Configuración de Cloudflare Workers (archivos estáticos)
+.github/workflows/
+  ci.yml           Pruebas y build en cada PR y push a main
+  pages.yml        Publica dist/ en GitHub Pages al fusionar a main
+wrangler.jsonc     Alternativa: Cloudflare Workers (por si se necesita repo privado o previews)
 ```
 
 Secciones de la página:
@@ -75,10 +78,12 @@ npm run preview # Sirve dist/ en http://localhost:5173
 
 ## Despliegue
 
-- Hosting: Cloudflare Workers con archivos estáticos (`wrangler.jsonc`).
-- Conexión (la hace Eduardo): Cloudflare → Workers & Pages → Create → Import a repository → este repo. Build command `npm run build`, deploy command `npx wrangler deploy`.
-- Producción se publica al fusionar a `main` con autorización de Eduardo.
-- Dominio propio (opcional): se agrega desde el panel de Cloudflare cuando el taller lo compre.
+- Hosting actual: **GitHub Pages** con el workflow `.github/workflows/pages.yml` (pruebas → build → publica `dist/`).
+- Activación (una sola vez): Settings → Pages → Source: **GitHub Actions**.
+- El sitio vive en la subruta `/autoempire-taller-web/`; por eso todas las rutas del sitio son relativas y `404.html` es autocontenida.
+- Producción se publica al fusionar a `main` con autorización de Eduardo. También se puede relanzar a mano desde Actions → "Publicar en GitHub Pages" → Run workflow.
+- Dominio propio (cuando el taller lo compre): Settings → Pages → Custom domain, más el registro CNAME en el proveedor del dominio.
+- Alternativa: Cloudflare Workers con `wrangler.jsonc` (build `npm run build`, deploy `npx wrangler deploy`) si el repo pasa a privado o se necesitan previews por rama.
 
 ## Flujo de cambios
 
@@ -86,4 +91,4 @@ Ramas de trabajo y PR según el Estándar de Desarrollo de Software de Eduardo (
 
 ## Volver a una versión estable
 
-Revertir el commit en `main` (`git revert <sha>` y PR), o en Cloudflare → el Worker → Deployments → elegir la versión anterior → Rollback.
+Revertir el commit en `main` (`git revert <sha>` y PR); al fusionar, Pages vuelve a publicar la versión anterior. También se puede volver a correr el workflow de Pages de un commit estable desde Actions.

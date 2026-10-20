@@ -5,16 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>Página no encontrada | Auto Empire Taller</title>
-  <link rel="icon" type="image/png" href="/img/favicon.png">
-  <link rel="stylesheet" href="/css/estilos.css">
+  <!-- Autocontenida: funciona igual en la raíz (Cloudflare) que en una subruta (GitHub Pages). -->
+  <style>
+    body { margin: 0; min-height: 100vh; display: grid; place-content: center; padding: 24px;
+      background: #ECEDEB; color: #1C1F22; font: 400 1.125rem/1.55 system-ui, sans-serif; }
+    h1 { font: 800 clamp(2.5rem, 8vw, 4.5rem)/0.95 'Arial Narrow', sans-serif; margin: 0 0 16px; }
+    p { max-width: 32em; margin: 0 0 24px; }
+    a { display: inline-block; padding: 12px 22px; background: #C62828; color: #fff; text-decoration: none;
+      font-weight: 600; border-radius: 3px; }
+    a:focus-visible { outline: 3px solid #1F3A93; outline-offset: 3px; }
+  </style>
 </head>
 <body>
-  <main class="bloque">
-    <div class="contenedor">
-      <h1 style="font-size:clamp(3rem,8vw,6rem);margin-bottom:16px">Esta página no existe</h1>
-      <p>Puede que el enlace esté mal escrito. Vuelve al inicio para ver los servicios o reservar tu cita.</p>
-      <a class="boton" href="/">Ir al inicio</a>
-    </div>
+  <main>
+    <h1>Esta página no existe</h1>
+    <p>Puede que el enlace esté mal escrito. Vuelve al inicio para ver los servicios o reservar tu cita.</p>
+    <a id="inicio" href="/">Ir al inicio</a>
   </main>
+  <script>
+    // En GitHub Pages el sitio vive en /autoempire-taller-web/
+    var base = location.pathname.indexOf('/autoempire-taller-web') === 0 ? '/autoempire-taller-web/' : '/';
+    document.getElementById('inicio').href = base;
+  </script>
 </body>
 </html>

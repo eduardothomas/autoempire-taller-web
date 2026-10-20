@@ -6,7 +6,7 @@
 **Plataforma:** GitHub
 
 ## Estado actual
-Primera versión completa para mostrarle al dueño del taller. Falta conectar el repo a Cloudflare Workers para tener un enlace público.
+Primera versión completa en `main`. PR abierto para publicar en GitHub Pages y tener el enlace para mostrarle a Joshua, el dueño del taller.
 
 ## Funcionalidades terminadas
 - [x] Portada con estado abierto/cerrado en hora de Panamá
@@ -18,17 +18,18 @@ Primera versión completa para mostrarle al dueño del taller. Falta conectar el
 - [x] Diseño responsive (escritorio y móvil) y fuentes servidas desde el sitio
 
 ## En desarrollo
-- [ ] Ninguno
+- [ ] `feature/github-pages`: workflow de GitHub Pages y 404 compatible con subruta
 
 ## Decisiones importantes
 - 2026-10-19 Sitio estático sin backend: las reservas van por WhatsApp para no tener costos ni datos personales guardados.
-- 2026-10-19 Hosting en Cloudflare Workers (predeterminado del estándar); repo privado.
+- 2026-10-19 Repo público y hosting en GitHub Pages para la demo: enlace inmediato y gratis, sin configurar otra cuenta. Cloudflare Workers queda como alternativa (`wrangler.jsonc`).
 - 2026-10-19 Precios "desde" solo en servicios estándar; el resto se cotiza.
 - 2026-10-19 `noindex` y aviso de propuesta mientras el taller no apruebe el contenido.
 
 ## Pruebas ejecutadas
 - 2026-10-19 `npm test`: 31 pruebas pasaron.
 - 2026-10-19 `npm run build`: build correcto, referencias y anclas verificadas.
+- 2026-10-19 Sitio servido bajo `/autoempire-taller-web/` (simulando Pages): sin recursos rotos, fuentes cargadas y 404 con enlace correcto al inicio.
 - 2026-10-19 Revisión visual con Playwright en 1440 px y 390 px; flujo de reserva probado (errores de validación, servicio preseleccionado y enlace de WhatsApp con el mensaje correcto). Sin scroll horizontal ni errores de consola. El mapa de Google no carga en el entorno de prueba; falta verlo en un navegador normal.
 
 ## Riesgos o bloqueos
@@ -36,6 +37,6 @@ Primera versión completa para mostrarle al dueño del taller. Falta conectar el
 - Fotos de baja resolución (capturas de Instagram).
 
 ## Pendientes y siguiente paso
-- [ ] Eduardo: conectar el repo en Cloudflare → Workers & Pages y compartir el enlace con el taller.
+- [ ] Eduardo: autorizar el PR de GitHub Pages; activar Settings → Pages → Source: GitHub Actions; compartir el enlace con Joshua.
 - [ ] Confirmar datos con el taller y reemplazar fotos.
 - [ ] Al cerrar la venta: quitar aviso de propuesta, `noindex` y bloqueo de `robots.txt`; dominio propio.
